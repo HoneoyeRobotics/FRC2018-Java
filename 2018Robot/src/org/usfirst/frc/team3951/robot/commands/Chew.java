@@ -30,10 +30,10 @@ public class Chew extends  Command {
 		Robot.arms.RunArmWheels(1);
 	}
 	
-	
+	//Chew is finished when 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return isTimedOut() || Robot.arms.CubeInArms();
 	}
 
 
