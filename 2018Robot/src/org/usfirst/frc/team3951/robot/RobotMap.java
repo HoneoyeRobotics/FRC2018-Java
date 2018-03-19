@@ -24,12 +24,36 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	//PWM Bus Identifiers
 	
 	
-	//CAN bus identifiers
-	public static final int FRONT_LEFT_MOTOR_CHANNEL = 0;
-	public static final int REAR_LEFT_MOTOR_CHANNEL = 1;
-	public static final int FRONT_RIGHT_MOTOR_CHANNEL = 2;	
-	public static final int REAR_RIGHT_MOTOR_CHANNEL = 3;
+	//define IDs for the drive subsystem
+	public static final int DRIVE_LEFT_FRONT_MOTOR_CANID = 1; // Talon SRX
+	public static final int DRIVE_LEFT_REAR_MOTOR_CANID = 2; //Victor SPX
+	public static final int DRIVE_RIGHT_FRONT_MOTOR_CANID = 3;	//Talon SRX
+	public static final int DRIVE_RIGHT_REAR_MOTOR_CANID = 4; //Victor SPX
+
+	//define IDs for the arm subsystem
+	public static final int ARM_WHEEL_LEFT_MOTOR_CANID = 9; // Victor SPX
+	public static final int ARM_WHEEL_RIGHT_MOTOR_CANID = 10; // Victor SPX	
+	public static final int ARM_POSITION_MOTOR_CANID = 7; //Victor SPX
+	public static final int ARM_POSITION_ENCODER_A_CHANNEL_DIO_INPUT = 0; //Victor SPX
+	public static final int ARM_POSITION_ENCODER_B_CHANNEL_DIO_INPUT = 1; //Victor SPX
+	public static final int ARM_POSITION_SENSOR_ANALOG_INPUT = 0; // Arm Sensor / Analog
+	public static final int ARM_POSITION_LIMIT_SWITCH_DIO_INPUT = 2; // Arm position limit switch on DIO 2
+	
+	//define IDs for the climb subsystem 
+	public static final int CLIMB_WINCH_MOTOR_FRONT_CANID= 5; // Victor SPX
+	public static final int CLIMB_WINCH_MOTOR_REAR_CANID = 6; //Victor SPX 	
+	public static final int CLIMB_TOWER_MOTOR_CANID = 11; // Victor SPX
+	public static final int CLIMB_TOWER_POSITION_LIMIT_SWITCH_DIO_INPUT = 3; // tower position limit switch on DIO 3
+	public static final int CLIMB_TOWER_ARM_HOOK_RELEASE_LATCH_PWM_INPUT = 0; // P
+	
+
+	public static final int BELLY_SENSOR_ANALOG_INPUT = 1; // Belly Sensor / Analog
+		
+	
+	
 }
+
+
+

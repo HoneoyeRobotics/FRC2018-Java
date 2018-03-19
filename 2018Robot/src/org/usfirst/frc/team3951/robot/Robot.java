@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team3951.robot.subsystems.Arms;
 import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 
 /**
@@ -24,11 +26,13 @@ import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 public class Robot extends TimedRobot {
 	public static Drivetrain drivetrain;
 	public static OI oi;
+	public static Arms arms;
 	
 	@Override
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		oi = new OI();
+		arms = new Arms();
 	}
 	
 	//Runs code during the teleop, every 20ms
@@ -36,4 +40,5 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
+	
 }

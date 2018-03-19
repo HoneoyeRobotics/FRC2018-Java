@@ -7,7 +7,11 @@
 
 package org.usfirst.frc.team3951.robot;
 
+import org.usfirst.frc.team3951.robot.commands.Chew;
+import org.usfirst.frc.team3951.robot.commands.Spit;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,16 +46,18 @@ public class OI {
 		// until it is finished as determined by it's isFinished method.
 		// button.whenReleased(new ExampleCommand());
 	
-	
+	//driver controller
 	public static final int DRIVER_JOYSTICK_PORT = 0;
+	private Joystick driverJoystick = new Joystick(DRIVER_JOYSTICK_PORT);
 	public static final int DRIVER_FORWARD_AXIS = 1;
 	public static final int DRIVER_ROTATE_LEFT_AXIS = 2;
-	public static final int DRIVER_ROTATE_RIGHT_AXIS = 3;
+	public static final int DRIVER_ROTATE_RIGHT_AXIS = 3;			
 	
-	private Joystick driverJoystick = new Joystick(DRIVER_JOYSTICK_PORT);
-	
-	public static final int COPILOT_JOYSTICK_PORT = 1;
+	//co-pilot joystick
+	public static final int COPILOT_JOYSTICK_PORT = 1;	
 	private Joystick coPilotJoystick = new Joystick(COPILOT_JOYSTICK_PORT);
+	public static final int ARM_SPIT_BUTTON = 1; //B button
+	public static final int ARM_CHEW_BUTTON = 2;//X button
 	
 	
 	public Joystick getDriverJoystick() {
@@ -61,4 +67,14 @@ public class OI {
 	public Joystick getCoPilotJoystick() {
 		return coPilotJoystick;
 	}
+	
+	
+	public OI() {
+	
+		//set button B to be spit
+		new JoystickButton(coPilotJoystick, ARM_SPIT_BUTTON).whileHeld(new Spit());	
+		//set button X to be chew
+		new JoystickButton(coPilotJoystick, ARM_CHEW_BUTTON).whileHeld(new Chew());
+	}
+	
 }
