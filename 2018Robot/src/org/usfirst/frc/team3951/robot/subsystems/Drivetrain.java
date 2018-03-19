@@ -55,7 +55,7 @@ public class Drivetrain extends Subsystem {
 	
 	
 	public void arcadeDrive(double xSpeed,double zRotation) {		
-		drivetrain.arcadeDrive(zRotation, zRotation);
+		drivetrain.arcadeDrive(xSpeed, zRotation);
 	}
 	
 	public void stop() {
