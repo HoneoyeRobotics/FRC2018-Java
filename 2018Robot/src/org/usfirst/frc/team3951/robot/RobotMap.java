@@ -52,6 +52,23 @@ public class RobotMap {
 	public static final int BELLY_SENSOR_ANALOG_INPUT = 1; // Belly Sensor / Analog
 		
 	
+	public static final double GYRO_ROTATE_MAX_SPEED = 0.6;
+	public static final double GYRO_ROTATE_MIN_SPEED = 0.4;
+	public static final double GYRO_ROTATE_SLOW_FACTOR = 60;
+	
+	public static final double WHEEL_DIAMETER = 6;
+	public static final int ENCODER_UNITS_PER_REVOLUTION = 4096;
+	public static final double DRIVE_DISTANCE_Y_FACTOR = 0;
+	public static final double DRIVE_DISTANCE_SPEED = 0.6; 
+	public static final double ROTATE_DEGREES_DEADBAND = 8;
+	
+	
+	public static final double ARM_RAISE_SPEED = 0.7;
+	public static final double ARM_LOWER_SPEED = 0.3;
+	public enum Direction {
+		 LEFT,
+		 RIGHT
+		}
 	
 }
 

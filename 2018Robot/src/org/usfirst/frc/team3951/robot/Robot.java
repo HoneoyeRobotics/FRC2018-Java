@@ -7,13 +7,24 @@
 
 package org.usfirst.frc.team3951.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3951.robot.commands.AutonomousCenter;
+import org.usfirst.frc.team3951.robot.commands.AutonomousLeft;
+import org.usfirst.frc.team3951.robot.commands.AutonomousRight;
+import org.usfirst.frc.team3951.robot.commands.Chew;
+import org.usfirst.frc.team3951.robot.commands.Spit;
 import org.usfirst.frc.team3951.robot.subsystems.Arms;
+import org.usfirst.frc.team3951.robot.subsystems.Camera;
+import org.usfirst.frc.team3951.robot.subsystems.Climber;
 import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 
 /**
@@ -27,18 +38,48 @@ public class Robot extends TimedRobot {
 	public static Drivetrain drivetrain;
 	public static OI oi;
 	public static Arms arms;
+	public static Climber climber;
+	public Command autonomousCommand;
+	public SendableChooser autoChooser;
+	public static Camera camera;
+	
 	
 	@Override
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		oi = new OI();
 		arms = new Arms();
+		climber = new Climber();
+		camera = new Camera();
+		
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Center - Either Switch", new AutonomousCenter());
+		autoChooser.addObject("Left - Switch or Wait", new AutonomousLeft());
+		autoChooser.addObject("Right - Switch or Wait", new AutonomousRight());
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData("Chew", new Chew());
+		SmartDashboard.putData("Spit", new Spit());
+		
+	
 	}
 	
 	//Runs code during the teleop, every 20ms
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
+	
+	
+    public void autonomousInit() {
+        // schedule the autonomous command (example)
+        autonomousCommand = (Command)autoChooser.getSelected();
+        autonomousCommand.start();
+    }
+    
+	  public void autonomousPeriodic() {
+	        Scheduler.getInstance().run();
+	    }
 	
 }

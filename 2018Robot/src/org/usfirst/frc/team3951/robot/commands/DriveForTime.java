@@ -2,51 +2,51 @@ package org.usfirst.frc.team3951.robot.commands;
 
 import org.usfirst.frc.team3951.robot.OI;
 import org.usfirst.frc.team3951.robot.Robot;
-import org.usfirst.frc.team3951.robot.RobotMap;
 import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Spit extends  Command {
+public class DriveForTime extends  Command {
 
-	public Spit() {
-		this(1);
-	}
-	public Spit(double timeout) {
-		super("Spit");
-		requires(Robot.arms);
+	private double xSpeed = 0;
+	private double zRotation = 0;
+	
+	public DriveForTime(double xSpeed, double zRotation, double runTime) {
+		super("Drive for Time");
+		requires(Robot.drivetrain);
 		setInterruptible(true);
-		//if no timeout set, set to 1.
-		if(timeout <= 0)
-			timeout = 1;
-		setTimeout(timeout);
+		//set runTime to 5 seconds if not set
+		if(runTime <= 0)
+			runTime = 5;
+		setTimeout(runTime);
+		
 	}
 	
-	//run in full reverse
 	@Override 
-	protected void execute() {		
-		Robot.arms.RunArmWheels(-1);
+	protected void execute() {
+		Robot.drivetrain.arcadeDrive(xSpeed, zRotation);
 	}
 	
-	//run until the arm spit button is release
 	@Override
 	protected boolean isFinished() {
-		//chew until they release the button.
-		return isTimedOut();
+		//this command is never finished so that it will always run.
+		return false;
 	}
 	
 	//at the end, stop the motor.
 	@Override
 	protected void end() {
-		Robot.arms.StopArmWheels();
+		Robot.drivetrain.stop();
 	}
 	
 
 	//if the command is interrupted(cancelled), stop the motor.
 	@Override
 	protected void interrupted() {
-		Robot.arms.StopArmWheels();
+		Robot.drivetrain.stop();
 	}
+		
+			
 
 }

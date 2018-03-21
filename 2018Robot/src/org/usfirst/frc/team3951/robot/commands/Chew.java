@@ -13,14 +13,14 @@ public class Chew extends  Command {
 	public Chew(){
 		this(1);
 	}
-	public Chew(double Timeout) {
+	public Chew(double timeout) {
 		super("Chew");
 		requires(Robot.arms);
 		setInterruptible(true);	
 		//if no timeout set, set to 1.
-		if(Timeout <= 0)
-			Timeout = 1;
-		setTimeout(Timeout);
+		if(timeout <= 0)
+			timeout = 1;
+		setTimeout(timeout);
 	}
 		
 	

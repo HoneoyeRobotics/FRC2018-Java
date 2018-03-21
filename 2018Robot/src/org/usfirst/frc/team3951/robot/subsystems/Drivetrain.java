@@ -5,6 +5,7 @@ import org.usfirst.frc.team3951.robot.RobotMap;
 import org.usfirst.frc.team3951.robot.commands.ArcadeDriveWithJoystick;
 
 import com.ctre.phoenix.CANifier;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -25,9 +26,8 @@ public class Drivetrain extends Subsystem {
 	private SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
 	
 	private DifferentialDrive drivetrain = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-	private ADXRS450_Gyro Gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-	
-	
+	private ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);	
+	private boolean drivingReversed = false;
 	
 	public Drivetrain() {
 		super("Drivetrain");
@@ -36,8 +36,20 @@ public class Drivetrain extends Subsystem {
 		frontRightMotor.setSensorPhase(false);
 		frontLeftMotor.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		frontLeftMotor.setSensorPhase(false);
+		
+		//not sure if we need follow, as we have speed controller groups.
+		//rearLeftMotor.follow(frontLeftMotor);		
+		//rearRightMotor.follow(frontRightMotor);
+		
+		
 	}
 	
+	public boolean isDriveReversed() {
+		return drivingReversed;
+	}
+	public void reverseDrivingDirection() {
+		drivingReversed = !drivingReversed;
+	}
 	public int getLeftMotorPosition()	{
 		return frontLeftMotor.getSelectedSensorPosition(0);
 	}
@@ -53,10 +65,23 @@ public class Drivetrain extends Subsystem {
 	}
 
 	
+	public double getGyroRate() {
+		return gyro.getRate();
+	}
+	
+	public double getGyroAngle() {
+		return gyro.getAngle();
+	}
+	
+	public void gyroReset() {
+		gyro.reset();
+	}
+	
 	
 	public void arcadeDrive(double xSpeed,double zRotation) {		
 		drivetrain.arcadeDrive(xSpeed, zRotation);
 	}
+	
 	
 	public void stop() {
 		drivetrain.stopMotor();

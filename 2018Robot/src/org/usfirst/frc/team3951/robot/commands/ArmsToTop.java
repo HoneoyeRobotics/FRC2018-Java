@@ -8,45 +8,46 @@ import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Spit extends  Command {
+public class ArmsToTop extends  Command {
 
-	public Spit() {
-		this(1);
+	public ArmsToTop() {
+		this(3);
 	}
-	public Spit(double timeout) {
-		super("Spit");
+	public ArmsToTop(double timeout) {
+		super("Arms To Top");
 		requires(Robot.arms);
 		setInterruptible(true);
 		//if no timeout set, set to 1.
 		if(timeout <= 0)
-			timeout = 1;
+			timeout = 3;
 		setTimeout(timeout);
 	}
 	
 	//run in full reverse
 	@Override 
-	protected void execute() {		
-		Robot.arms.RunArmWheels(-1);
+	protected void execute() {	
+		Robot.arms.MoveArms(1);
 	}
 	
 	//run until the arm spit button is release
 	@Override
 	protected boolean isFinished() {
 		//chew until they release the button.
-		return isTimedOut();
+		return isTimedOut() || Robot.arms.ArmsAtLimitSwitch();
 	}
 	
 	//at the end, stop the motor.
 	@Override
 	protected void end() {
-		Robot.arms.StopArmWheels();
+		Robot.arms.StopArms();
+	    Robot.arms.ResetArmEncoder();
 	}
 	
 
 	//if the command is interrupted(cancelled), stop the motor.
 	@Override
 	protected void interrupted() {
-		Robot.arms.StopArmWheels();
+		Robot.arms.StopArms();
 	}
 
 }

@@ -8,25 +8,20 @@ import org.usfirst.frc.team3951.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Spit extends  Command {
+public class ReleaseClimbHook extends  Command {
 
-	public Spit() {
-		this(1);
-	}
-	public Spit(double timeout) {
-		super("Spit");
-		requires(Robot.arms);
-		setInterruptible(true);
-		//if no timeout set, set to 1.
-		if(timeout <= 0)
-			timeout = 1;
-		setTimeout(timeout);
+	public ReleaseClimbHook() {
+		super("Release Climb Hook");
+		requires(Robot.climber);
+		//set timeout to 1 second (long enough for the latch to release)		
+		setTimeout(1);
+		setInterruptible(false);
 	}
 	
 	//run in full reverse
 	@Override 
-	protected void execute() {		
-		Robot.arms.RunArmWheels(-1);
+	protected void execute() {	
+		Robot.climber.OpenReleaseHook();
 	}
 	
 	//run until the arm spit button is release
@@ -39,14 +34,14 @@ public class Spit extends  Command {
 	//at the end, stop the motor.
 	@Override
 	protected void end() {
-		Robot.arms.StopArmWheels();
+		Robot.climber.CloseReleaseHook();
 	}
 	
 
 	//if the command is interrupted(cancelled), stop the motor.
 	@Override
 	protected void interrupted() {
-		Robot.arms.StopArmWheels();
+		Robot.climber.CloseReleaseHook();
 	}
 
 }

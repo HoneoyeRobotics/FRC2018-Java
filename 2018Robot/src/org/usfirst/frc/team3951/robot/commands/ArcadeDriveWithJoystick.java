@@ -22,8 +22,16 @@ public class ArcadeDriveWithJoystick extends  Command {
 		double forwardSpeed = joystick.getRawAxis(OI.DRIVER_FORWARD_AXIS);
 		double leftButton = joystick.getRawAxis(OI.DRIVER_ROTATE_LEFT_AXIS);
 		double rightButton = joystick.getRawAxis(OI.DRIVER_ROTATE_RIGHT_AXIS);		
+		double turnSpeed = rightButton - leftButton;
+		if(Robot.drivetrain.isDriveReversed())
+			turnSpeed *= -1;
 		
-		Robot.drivetrain.arcadeDrive(forwardSpeed, rightButton - leftButton);
+		if(joystick.getRawButton(Robot.oi.SLOW_SPEED_BUTTON)) {
+			forwardSpeed *= 0.5;
+			turnSpeed *= 0.5;
+		}
+		
+		Robot.drivetrain.arcadeDrive(forwardSpeed, turnSpeed);
 	}
 	
 	@Override
