@@ -70,6 +70,12 @@ public class RobotMap {
 		 RIGHT
 		}
 	
+	
+	
+	public static void init() {
+		
+	}
+	
 }
 
 
