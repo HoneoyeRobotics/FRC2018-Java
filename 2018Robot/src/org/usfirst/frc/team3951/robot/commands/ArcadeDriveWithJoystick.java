@@ -30,7 +30,7 @@ public class ArcadeDriveWithJoystick extends  Command {
 			forwardSpeed *= 0.5;
 			turnSpeed *= 0.5;
 		}
-		
+		//WRITE MOTOR VALUES TO NETWORK TABLES WITH ITERATION, Robot.recordCounter;
 		Robot.drivetrain.arcadeDrive(forwardSpeed, turnSpeed);
 	}
 	

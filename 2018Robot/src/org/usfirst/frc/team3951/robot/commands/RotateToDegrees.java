@@ -94,6 +94,22 @@ public class RotateToDegrees extends  Command {
 		lastHeading = currentDegrees;
 	}
 	
+	
+	//at the end, stop the motor.
+	@Override
+	protected void end() {
+		Robot.drivetrain.stop();
+	}
+	
+
+	//if the command is interrupted(cancelled), stop the motor.
+	@Override
+	protected void interrupted() {
+		Robot.drivetrain.stop();
+	}
+
+		
+		
 	@Override
 	protected boolean isFinished() {
 		//run until the timeout is reached, or we have traveled within the deadband or over.
