@@ -42,7 +42,8 @@ public class Robot extends TimedRobot {
 	public Command autonomousCommand;
 	public SendableChooser autoChooser;
 	public static Camera camera;
-	
+	public static int recordCounter = 0;
+	public static boolean recordMode = false;
 	
 	@Override
 	public void robotInit() {
@@ -68,6 +69,8 @@ public class Robot extends TimedRobot {
 	//Runs code during the teleop, every 20ms
 	@Override
 	public void teleopPeriodic() {
+		if(recordMode == true)
+			recordCounter++;
 		Scheduler.getInstance().run();
 		
 	}

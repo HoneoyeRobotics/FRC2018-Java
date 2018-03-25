@@ -27,6 +27,7 @@ public class Arms extends Subsystem {
 	
 	public Arms() {
 		super("Arms");
+		armPositionEncoder.reset();
 	}
 	
 	public void RunArmWheels(double speed)

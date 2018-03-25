@@ -21,6 +21,10 @@ public class Chew extends  Command {
 		if(timeout <= 0)
 			timeout = 1;
 		setTimeout(timeout);
+		if(Robot.recordMode == true)
+		{
+			
+		}
 	}
 		
 	
