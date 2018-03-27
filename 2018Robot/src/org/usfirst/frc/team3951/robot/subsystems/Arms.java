@@ -14,20 +14,33 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Arms extends Subsystem {
 	
-	private WPI_VictorSPX armWheelLeftMotor = new WPI_VictorSPX(RobotMap.ARM_WHEEL_LEFT_MOTOR_CANID);
-	private WPI_VictorSPX armWheelRightMotor = new WPI_VictorSPX(RobotMap.ARM_WHEEL_RIGHT_MOTOR_CANID);
-	private SpeedControllerGroup armWheelMotors = new SpeedControllerGroup(armWheelLeftMotor, armWheelRightMotor);
+	private WPI_VictorSPX armWheelLeftMotor;
+	private WPI_VictorSPX armWheelRightMotor;
+	private SpeedControllerGroup armWheelMotors;
 	
 
-	private WPI_VictorSPX armPositionMotor = new WPI_VictorSPX(RobotMap.ARM_POSITION_MOTOR_CANID);
-	private Encoder armPositionEncoder = new Encoder(RobotMap.ARM_POSITION_ENCODER_A_CHANNEL_DIO_INPUT, RobotMap.ARM_POSITION_ENCODER_B_CHANNEL_DIO_INPUT);
-	private DigitalInput armPositionLimitSwitch = new DigitalInput(RobotMap.ARM_POSITION_LIMIT_SWITCH_DIO_INPUT);	
-	private AnalogInput armPositionSensor = new AnalogInput(RobotMap.ARM_POSITION_SENSOR_ANALOG_INPUT);
+	private WPI_VictorSPX armPositionMotor;
+	private Encoder armPositionEncoder;
+	private DigitalInput armPositionLimitSwitch;	
+	private AnalogInput armPositionSensor;
 	
 	
 	public Arms() {
 		super("Arms");
+		
+		armWheelLeftMotor = new WPI_VictorSPX(RobotMap.ARM_WHEEL_LEFT_MOTOR_CANID);
+		armWheelRightMotor = new WPI_VictorSPX(RobotMap.ARM_WHEEL_RIGHT_MOTOR_CANID);
+		armWheelMotors = new SpeedControllerGroup(armWheelLeftMotor, armWheelRightMotor);
+		
+
+		armPositionMotor = new WPI_VictorSPX(RobotMap.ARM_POSITION_MOTOR_CANID);
+		armPositionEncoder = new Encoder(RobotMap.ARM_POSITION_ENCODER_A_CHANNEL_DIO_INPUT, RobotMap.ARM_POSITION_ENCODER_B_CHANNEL_DIO_INPUT);
 		armPositionEncoder.reset();
+		
+		armPositionLimitSwitch = new DigitalInput(RobotMap.ARM_POSITION_LIMIT_SWITCH_DIO_INPUT);	
+		armPositionSensor = new AnalogInput(RobotMap.ARM_POSITION_SENSOR_ANALOG_INPUT);
+		
+		
 	}
 	
 	public void RunArmWheels(double speed)

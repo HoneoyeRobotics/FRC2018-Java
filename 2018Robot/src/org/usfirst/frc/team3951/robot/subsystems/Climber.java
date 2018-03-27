@@ -13,19 +13,28 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
-	
-	private WPI_VictorSPX winchFrontMotor = new WPI_VictorSPX(RobotMap.CLIMB_WINCH_MOTOR_FRONT_CANID);
-	private WPI_VictorSPX winchReartMotor = new WPI_VictorSPX(RobotMap.CLIMB_WINCH_MOTOR_REAR_CANID);
-	private SpeedControllerGroup winchMotors = new SpeedControllerGroup(winchFrontMotor, winchReartMotor);
-	
+	private WPI_VictorSPX winchFrontMotor;
+	private WPI_VictorSPX winchRearMotor;
+	private SpeedControllerGroup winchMotors;
 
-	private WPI_VictorSPX towerMotor = new WPI_VictorSPX(RobotMap.CLIMB_TOWER_MOTOR_CANID);
-	private DigitalInput towerLimitSwitch = new DigitalInput(RobotMap.CLIMB_TOWER_POSITION_LIMIT_SWITCH_DIO_INPUT);	
-	private PWM hookReleaseMotor = new PWM(RobotMap.CLIMB_TOWER_ARM_HOOK_RELEASE_LATCH_PWM_INPUT);
-	
+	private WPI_VictorSPX towerMotor;
+	private DigitalInput towerLimitSwitch;	
+	private PWM hookReleaseMotor;
+		
 	
 	public Climber() {
 		super("Climber");
+		
+		winchFrontMotor = new WPI_VictorSPX(RobotMap.CLIMB_WINCH_MOTOR_FRONT_CANID);
+		winchRearMotor = new WPI_VictorSPX(RobotMap.CLIMB_WINCH_MOTOR_REAR_CANID);
+		winchMotors = new SpeedControllerGroup(winchFrontMotor, winchRearMotor);
+		
+
+		towerMotor = new WPI_VictorSPX(RobotMap.CLIMB_TOWER_MOTOR_CANID);
+		towerLimitSwitch = new DigitalInput(RobotMap.CLIMB_TOWER_POSITION_LIMIT_SWITCH_DIO_INPUT);	
+		hookReleaseMotor = new PWM(RobotMap.CLIMB_TOWER_ARM_HOOK_RELEASE_LATCH_PWM_INPUT);
+			
+		
 	}
 	
 	public void OpenReleaseHook() {

@@ -7,6 +7,18 @@
 
 package org.usfirst.frc.team3951.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -32,7 +44,8 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_FRONT_MOTOR_CANID = 3;	//Talon SRX
 	public static final int DRIVE_RIGHT_REAR_MOTOR_CANID = 4; //Victor SPX
 
-	//define IDs for the arm subsystem
+	//define IDs for the arm subsystem	
+	
 	public static final int ARM_WHEEL_LEFT_MOTOR_CANID = 9; // Victor SPX
 	public static final int ARM_WHEEL_RIGHT_MOTOR_CANID = 10; // Victor SPX	
 	public static final int ARM_POSITION_MOTOR_CANID = 7; //Victor SPX
@@ -73,6 +86,9 @@ public class RobotMap {
 	
 	
 	public static void init() {
+		//constructors for motors/sensors
+		
+		
 		
 	}
 	
