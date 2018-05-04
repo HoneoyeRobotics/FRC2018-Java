@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkTablesClient", "NetworkTablesClient\NetworkTablesClient.csproj", "{95216731-7192-4690-80A9-83BED5B1530D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95216731-7192-4690-80A9-83BED5B1530D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95216731-7192-4690-80A9-83BED5B1530D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95216731-7192-4690-80A9-83BED5B1530D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95216731-7192-4690-80A9-83BED5B1530D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39B58822-046B-46B3-A8A0-3BD56E1463B6}
+	EndGlobalSection
+EndGlobal
